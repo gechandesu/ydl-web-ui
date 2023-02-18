@@ -5,7 +5,7 @@ css:
 	npx tailwindcss -i input.css -o $(SRCDIR)/static/style.css --watch
 
 run:
-	DEBUG=1 YDL_API_HOST=$(YDL_API_HOST) pipenv run python $(SRCDIR)/router.py
+	cd $(SRCDIR) && DEBUG=1 YDL_API_HOST=$(YDL_API_HOST) pipenv run python router.py
 
 lint:
 	pipenv run black $(SRCDIR)
