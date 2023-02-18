@@ -11,11 +11,14 @@ This UI is written for my personal use and may not have the features you would l
 
 # Roadmap
 
-- [] Add Dockerfile and docker-compose.yml
-- [] Handle non-youtube links
-- [] Handle unsupported URLs
-- [] Advanced settings
-- [] Direct link to downloaded video
+- [ ] Add Dockerfile and docker-compose.yml
+- [ ] Handle non-youtube links
+    - [ ] Twitter
+    - [ ] Nicovideo
+- [ ] Handle unsupported URLs
+- [ ] YouTube playlists download
+- [ ] Advanced settings
+- [ ] Direct link to downloaded video
 
 # Installation
 
