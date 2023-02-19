@@ -1,5 +1,7 @@
 """ydl_api_ng Web UI."""
 
+__version__ = "0.1.0"
+
 import os
 import datetime
 
@@ -29,6 +31,13 @@ def info():
     video_info["duration_in_hms"] = str(
         datetime.timedelta(seconds=int(video_info["duration"]))
     )
+    # Replace channel with uploader for non-YouTube sources
+    try:
+        video_info["channel_url"]
+    except KeyError:
+        video_info["channel_url"] = video_info["uploader_url"]
+        video_info["channel"] = video_info["uploader"]
+
     return template("templates/video.tpl", video=video_info)
 
 
