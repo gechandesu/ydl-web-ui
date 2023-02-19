@@ -11,10 +11,11 @@ This UI is written for my personal use and may not have the features you would l
 
 # Roadmap
 
-- [ ] Add Dockerfile and docker-compose.yml
+- [x] Add Dockerfile and docker-compose.yml
 - [ ] Handle non-youtube links
     - [ ] Twitter
     - [ ] Nicovideo
+    - [ ] vk.com
 - [ ] Handle unsupported URLs
 - [ ] YouTube playlists download
 - [ ] Advanced settings
@@ -22,7 +23,50 @@ This UI is written for my personal use and may not have the features you would l
 
 # Installation
 
-I recomment setup with Docker via [docker-compose.yml](docker-compose.yml).
+## Docker Compose (easiest)
+
+Copy [docker-compose.yml](docker-compose.yml) and edit if you want.
+
+Then up containers:
+
+```
+docker compose up -d
+```
+
+ydl-web-ui will listen port 4011/tcp.
+
+## Docker
+
+1. [Setup ydl_api_ng](https://github.com/Totonyus/ydl_api_ng#installation).
+
+2. Install Web UI.
+
+You must specify your ydl_api_ng instance host as `YDL_API_HOST` environment variable.
+
+```
+docker run -d \
+    --name ydl_web_ui \
+    -p 4011:3000 \
+    -e YDL_API_HOST=http://1.2.3.4:5011 \
+    nxhs/ydl-web-ui:latest
+```
+
+## Without Docker
+
+Use python 3.6 or newer.
+
+Replace `YDL_API_HOST` value to your actual ydl_api_ng instance URL.
+
+```
+python3 -m venv env
+. env/bin/activate
+pip install -r requirements.txt
+pip install gunicorn
+export YDL_API_HOST=http://1.2.3.4:5011
+gunicorn --chdir=./web_ui router:app -b :3000
+```
+
+See also gunicorn deployment options: https://docs.gunicorn.org/en/latest/deploy.html
 
 # Development
 

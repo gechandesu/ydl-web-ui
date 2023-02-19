@@ -10,3 +10,7 @@ run:
 lint:
 	pipenv run black $(SRCDIR)
 	pipenv run pylint $(SRCDIR)
+
+image:
+	ver=$$(awk -F'= ' '/__version__/{gsub("\"", ""); print $$2}' web_ui/router.py) && \
+	sudo docker build . -t ydl-web-ui:$$ver -t ydl-web-ui:latest
