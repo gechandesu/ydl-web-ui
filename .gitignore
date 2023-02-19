@@ -4,3 +4,7 @@ __pycache__/
 .env
 node_modules/
 examples/
+data/
+downloads/
+logs/
+params/
